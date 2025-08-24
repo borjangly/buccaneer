@@ -20,10 +20,10 @@ function loadHTMLAsset(placeholderId, assetPath, callback) {
 }
 
 // Footer
-loadHTMLAsset('footer', '/assets/footer.html');
+loadHTMLAsset('footer', './assets/footer.html');
 
 // Navigation bar
-loadHTMLAsset('navbar-placeholder', '/assets/navbar.html', () => {
+loadHTMLAsset('navbar-placeholder', './assets/navbar.html', () => {
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
   
   navLinks.forEach(link => {
