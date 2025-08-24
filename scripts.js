@@ -24,18 +24,43 @@ loadHTMLAsset('footer', '/assets/footer.html');
 
 // Navigation bar
 loadHTMLAsset('navbar-placeholder', '/assets/navbar.html', () => {
-  // Scroll to top if clicking "Overview" while already on the Overview page
-  const overviewLink = document.getElementById('navbarDropdownOverview');
-  if (overviewLink) {
-    overviewLink.addEventListener('click', (e) => {
-      const currentPath = window.location.pathname.replace(/\/+$/, '');
-      const overviewPath = '/overview/overview.html';
-      if (currentPath === overviewPath) {
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const currentPath = window.location.pathname.replace(/\/+$/, '');  // Current page path
+      const targetPath = link.getAttribute('href').replace(/\/+$/, '');  // Target path of the clicked link
+
+      // If the link is an anchor (e.g., #section1), allow the default behavior (scroll)
+      if (targetPath.startsWith("#")) {
+        return;
+      }
+
+      // Prevent default behavior and smoothly scroll if on the same page
+      if (currentPath === targetPath) {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        return;
       }
     });
-  }
+  });
+
+  // Handle dropdown button clicks (to ensure navigation happens)
+  const dropdownButtons = document.querySelectorAll('.navbar-nav .nav-item.dropdown > .nav-link');
+
+  dropdownButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      const currentPath = window.location.pathname.replace(/\/+$/, '');
+      const targetPath = button.getAttribute('href').replace(/\/+$/, '');
+
+      // Prevent the default dropdown toggle behavior and navigate if necessary
+      if (currentPath !== targetPath) {
+        window.location.href = targetPath; // Manually navigate to the link
+        e.preventDefault();
+      }
+    });
+  });
 
   // Dark mode toggle logic
   const themeToggleCheckbox = document.getElementById('themeToggleCheckbox');
@@ -54,7 +79,6 @@ loadHTMLAsset('navbar-placeholder', '/assets/navbar.html', () => {
     localStorage.setItem('darkMode', isDark);
   });
 });
-
 
 // Return to top button
 loadHTMLAsset('returnToTop-placeholder', '/assets/return-to-top.html', () => {

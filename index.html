@@ -17,15 +17,6 @@
 <body>
     <div id="navbar-placeholder" style="margin-top: 80px;"></div>
 
-    <script>
-        fetch('assets/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-placeholder').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading navbar:', error));
-    </script>
-
     <!-- Image Section with Tooltip -->
     <div class="image-container">
         <img src="images/buccaneer.webp" alt="What a strong pirate!" class="img-fluid rounded" data-bs-toggle="tooltip"
@@ -38,6 +29,7 @@
         crossorigin="anonymous"></script>
 
     <script>
+        // Remove this later
         // Initialize Bootstrap tooltips (without jQuery)
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -46,11 +38,6 @@
     </script>
 
     <div id="footer"></div>
-    <script>
-        fetch('assets/footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
-    </script>
 
     <script src="scripts.js"></script>
 </body>

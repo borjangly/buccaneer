@@ -1,7 +1,9 @@
 /* Set the background color for the entire page */
 body {
-    background-color: #ADD8E6; /* Light Blue Background */
-    font-family: 'Montserrat', sans-serif; /* Ensure font is applied across the page */
+    background-color: #ADD8E6;
+    /* Light Blue Background */
+    font-family: 'Montserrat', sans-serif;
+    /* Ensure font is applied across the page */
 }
 
 /* Centering the image in the middle of the screen */
@@ -15,171 +17,217 @@ body {
 
 /* Set image size */
 .image-container img {
-    max-width: 80%; /* Adjust this value to scale the image */
+    max-width: 80%;
+    /* Adjust this value to scale the image */
     height: auto;
-    border-radius: 10px; /* Optional: add rounded corners to the image */
+    border-radius: 10px;
+    /* Optional: add rounded corners to the image */
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 /* Center navbar items */
-.navbar-nav {
-  margin-left: auto;
-  margin-right: auto;
+.navbar-nav-centered {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Base dropdown menu styling */
 .navbar .dropdown-menu {
-  left: 50% !important;
-  transform: translateX(-50%);
-  margin-top: 0;
-  border-top: none;
-  opacity: 0;
-  visibility: hidden;
-  display: block; /* Required for transition to work */
-  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-  pointer-events: none; /* Prevent interaction while hidden */
+    left: 50% !important;
+    transform: translateX(-50%);
+    margin-top: 0;
+    border-top: none;
+    opacity: 0;
+    visibility: hidden;
+    display: block;
+    /* Required for transition to work */
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    pointer-events: none;
+    /* Prevent interaction while hidden */
 }
 
 /* Show dropdown on hover */
 .nav-item.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto; /* Re-enable interaction */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    /* Re-enable interaction */
+}
+
+[id] {
+  scroll-margin-top: 60px;
 }
 
 #returnToTop {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background-color: #007bff;
-  color: white;
-  border-radius: 50%;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  user-select: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    user-select: none;
 
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 
-  outline: none !important;
-  box-shadow: none !important;
-  border: none !important;
-  background-clip: padding-box;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background-clip: padding-box;
 }
 
 #returnToTop.show {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
 
 #returnToTop:focus {
-  outline: none !important;
-  box-shadow: none !important;
-  border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 #returnToTop::before {
-  text-shadow: none !important;
-  filter: none !important;
+    text-shadow: none !important;
+    filter: none !important;
 }
 
 /* Toggle container */
 .theme-toggle {
-  position: relative;
-  width: 60px;
-  height: 30px;
+    position: relative;
+    width: 60px;
+    height: 30px;
 }
 
 /* Label wraps icons and slider */
 #themeToggleLabel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  background: #ddd; /* Light mode background */
-  border-radius: 30px;
-  padding: 5px;
-  position: relative;
-  height: 100%;
-  transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background: #ddd;
+    /* Light mode background */
+    border-radius: 30px;
+    padding: 5px;
+    position: relative;
+    height: 100%;
+    transition: background 0.3s;
 }
 
 /* When checked (dark mode), set dark background */
-#themeToggleCheckbox:checked + #themeToggleLabel {
-  background: #444; /* Dark mode background */
+#themeToggleCheckbox:checked+#themeToggleLabel {
+    background: #444;
+    /* Dark mode background */
 }
 
 /* Icon base styles */
 .theme-toggle .icon {
-  font-size: 1.2rem;
-  width: 20px;
-  text-align: center;
-  user-select: none;
-  pointer-events: none;
-  transition: color 0.3s;
-  position: relative;  /* add this */
-  z-index: 1;          /* add this */
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+    user-select: none;
+    pointer-events: none;
+    transition: color 0.3s;
+    position: relative;
+    /* add this */
+    z-index: 1;
+    /* add this */
 }
 
 /* Dark mode icon color */
-#themeToggleCheckbox:checked + #themeToggleLabel .icon {
-  color: #fff; /* White for dark mode */
+#themeToggleCheckbox:checked+#themeToggleLabel .icon {
+    color: #fff;
+    /* White for dark mode */
 }
 
 /* Hide moon icon in light mode */
 .theme-toggle .icon.moon {
-  display: none;
+    display: none;
 }
 
 /* Show moon icon only in dark mode */
-#themeToggleCheckbox:checked + #themeToggleLabel .icon.moon {
-  display: block;
+#themeToggleCheckbox:checked+#themeToggleLabel .icon.moon {
+    display: block;
 }
 
 /* Initially, show sun, hide moon */
 .theme-toggle .icon.sun {
-  display: block;
-  position: relative;
-  margin-right: auto;
-  color: black;
+    display: block;
+    position: relative;
+    margin-right: auto;
+    color: black;
 }
 
 .theme-toggle .icon.moon {
-  display: none;
-  position: relative;
-  right:0;
-  top: 0;
-  margin-left: auto;
-  color: black;
+    display: none;
+    position: relative;
+    right: 0;
+    top: 0;
+    margin-left: auto;
+    color: black;
 }
 
 /* Hide sun icon in dark mode */
-#themeToggleCheckbox:checked + #themeToggleLabel .icon.sun {
-  display: none;
+#themeToggleCheckbox:checked+#themeToggleLabel .icon.sun {
+    display: none;
 }
 
 /* Slider circle */
 .toggle-slider {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 24px;
-  height: 24px;
-  background-color: #fff;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-  z-index: 0;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    z-index: 0;
 }
 
 /* Move slider when toggled */
-#themeToggleCheckbox:checked + #themeToggleLabel .toggle-slider {
-  transform: translateX(30px);
+#themeToggleCheckbox:checked+#themeToggleLabel .toggle-slider {
+    transform: translateX(30px);
+}
+
+/* Contributor images */
+/* Make sure the card doesn't shrink its children weirdly */
+.contributor-fixed-card .d-flex {
+  width: 100%;
+}
+
+/* Fixed size left column */
+.image-column {
+  flex: 0 0 30%;  /* Don't grow/shrink, take up 30% */
+  max-width: 250px;  /* Optional: cap it if needed */
+  padding: 15px;
+  box-sizing: border-box;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+
+.image-column img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.text-column {
+  flex: 1;            /* Take up remaining space */
+  padding: 1rem;
+  min-width: 0;       /* Helps prevent overflow */
 }
