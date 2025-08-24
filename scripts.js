@@ -81,7 +81,7 @@ loadHTMLAsset('navbar-placeholder', './assets/navbar.html', () => {
 });
 
 // Return to top button
-loadHTMLAsset('returnToTop-placeholder', '/assets/return-to-top.html', () => {
+loadHTMLAsset('returnToTop-placeholder', './assets/return-to-top.html', () => {
   const returnToTopBtn = document.getElementById('returnToTop');
   if (!returnToTopBtn) {
     console.error('Return to Top button not found!');
