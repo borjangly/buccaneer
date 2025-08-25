@@ -231,3 +231,9 @@ html {
   padding: 1rem;
   min-width: 0;       /* Helps prevent overflow */
 }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
