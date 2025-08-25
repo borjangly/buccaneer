@@ -20,10 +20,10 @@ function loadHTMLAsset(placeholderId, assetPath, callback) {
 }
 
 // Footer
-loadHTMLAsset('footer', '/buccaneer.github.io/assets/footer.html');
+loadHTMLAsset('footer', './assets/footer.html');
 
 // Navigation bar
-loadHTMLAsset('navbar-placeholder', '/buccaneer.github.io/assets/navbar.html', () => {
+loadHTMLAsset('navbar-placeholder', './assets/navbar.html', () => {
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
   
   navLinks.forEach(link => {
@@ -81,7 +81,7 @@ loadHTMLAsset('navbar-placeholder', '/buccaneer.github.io/assets/navbar.html', (
 });
 
 // Return to top button
-loadHTMLAsset('returnToTop-placeholder', '/buccaneer.github.io/assets/return-to-top.html', () => {
+loadHTMLAsset('returnToTop-placeholder', './assets/return-to-top.html', () => {
   const returnToTopBtn = document.getElementById('returnToTop');
   if (!returnToTopBtn) {
     console.error('Return to Top button not found!');
