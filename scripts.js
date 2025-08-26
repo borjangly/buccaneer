@@ -1,4 +1,4 @@
-// This function loads HTML assets
+// Function to load HTML assets dynamically
 function loadHTMLAsset(placeholderId, assetPath, callback) {
   fetch(assetPath)
     .then(response => {
@@ -9,9 +9,7 @@ function loadHTMLAsset(placeholderId, assetPath, callback) {
       const placeholder = document.getElementById(placeholderId);
       if (placeholder) {
         placeholder.innerHTML = html;
-        if (typeof callback === 'function') {
-          callback();
-        }
+        if (typeof callback === 'function') callback();
       } else {
         console.warn(`Placeholder element with ID "${placeholderId}" not found.`);
       }
@@ -19,69 +17,42 @@ function loadHTMLAsset(placeholderId, assetPath, callback) {
     .catch(error => console.error(error));
 }
 
-// Footer
-loadHTMLAsset('footer', './assets/footer.html');
+// Navbar code
+function setupNavbar() {
+  const currentPath = window.location.pathname.replace(/\/+$/, '');
 
-// Navigation bar
-loadHTMLAsset('navbar-placeholder', './assets/navbar.html', () => {
-  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-  
-  navLinks.forEach(link => {
+  // Handle normal nav links
+  document.querySelectorAll('#navbar-placeholder nav a.nav-link').forEach(link => {
+    const url = new URL(link.href, window.location.origin);
+    const linkPath = url.pathname.replace(/\/+$/, '');
+
     link.addEventListener('click', (e) => {
-      const currentPath = window.location.pathname.replace(/\/+$/, '');  // Current page path
-      const targetPath = link.getAttribute('href').replace(/\/+$/, '');  // Target path of the clicked link
-
-      // If the link is an anchor (e.g., #section1), allow the default behavior (scroll)
-      if (targetPath.startsWith("#")) {
-        return;
+      if (linkPath === currentPath) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+    });
+  });
 
-      // Prevent default behavior and smoothly scroll if on the same page
-      if (currentPath === targetPath) {
+  // Handle dropdown toggle links (Bootstrap normally blocks navigation)
+  document.querySelectorAll('#navbar-placeholder .nav-item.dropdown > .nav-link').forEach(link => {
+    const url = new URL(link.href, window.location.origin);
+    const linkPath = url.pathname.replace(/\/+$/, '');
+
+    link.addEventListener('click', (e) => {
+      if (linkPath === currentPath) {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        return;
-      }
-    });
-  });
-
-  // Handle dropdown button clicks (to ensure navigation happens)
-  const dropdownButtons = document.querySelectorAll('.navbar-nav .nav-item.dropdown > .nav-link');
-
-  dropdownButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      const currentPath = window.location.pathname.replace(/\/+$/, '');
-      const targetPath = button.getAttribute('href').replace(/\/+$/, '');
-
-      // Prevent the default dropdown toggle behavior and navigate if necessary
-      if (currentPath !== targetPath) {
-        window.location.href = targetPath; // Manually navigate to the link
         e.preventDefault();
+        window.location.href = link.href;
       }
     });
   });
-
-  // Dark mode toggle logic
-  const themeToggleCheckbox = document.getElementById('themeToggleCheckbox');
-
-  // Apply stored dark mode preference
-  const prefersDark = localStorage.getItem('darkMode') === 'true';
-  if (prefersDark) {
-    document.body.classList.add('dark-mode');
-    if (themeToggleCheckbox) themeToggleCheckbox.checked = true;
-  }
-
-  // Handle toggle change
-  themeToggleCheckbox?.addEventListener('change', () => {
-    const isDark = themeToggleCheckbox.checked;
-    document.body.classList.toggle('dark-mode', isDark);
-    localStorage.setItem('darkMode', isDark);
-  });
-});
+}
 
 // Return to top button
-loadHTMLAsset('returnToTop-placeholder', './assets/return-to-top.html', () => {
+function returnToTop() {
   const returnToTopBtn = document.getElementById('returnToTop');
   if (!returnToTopBtn) {
     console.error('Return to Top button not found!');
@@ -99,4 +70,17 @@ loadHTMLAsset('returnToTop-placeholder', './assets/return-to-top.html', () => {
   returnToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+};
+
+
+// Load navbar and set up handlers on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  // Nav bar
+  loadHTMLAsset('navbar-placeholder', './assets/navbar.html', setupNavbar);
+
+  // Footer
+  loadHTMLAsset('footer', './assets/footer.html');
+
+  // Return to top button
+  loadHTMLAsset('returnToTop-placeholder', './assets/return-to-top.html', returnToTop);
 });
