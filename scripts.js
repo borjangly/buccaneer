@@ -15,7 +15,7 @@ function loadHTMLAsset(placeholderId, assetPath, callback) {
       }
     })
     .catch(error => console.error(error));
-}
+};
 
 // Navbar code
 function setupNavbar() {
@@ -72,6 +72,38 @@ function returnToTop() {
   });
 };
 
+// Copy URL links
+// function initCopyLinkToClipboard() {
+//   const copyLinks = document.querySelectorAll('.copy-link');
+//   console.log('Copy links found:', copyLinks.length);
+
+//   copyLinks.forEach(link => {
+//     const heading = link.closest('h2, h3, h4, h5, h6');
+//     console.log('Found heading for link:', heading);
+
+//     if (!heading || !heading.id) {
+//       console.warn('No valid heading with id found for copy link:', link);
+//       return;
+//     }
+
+//     link.href = `${window.location.origin}${window.location.pathname}#${heading.id}`;
+//     console.log('Set link href to:', link.href);
+
+//     link.addEventListener('click', e => {
+//       e.preventDefault();
+//       navigator.clipboard.writeText(link.href).then(() => {
+//         console.log('Copied to clipboard:', link.href);
+//         const originalTitle = link.getAttribute('title');
+//         link.setAttribute('title', 'Copied!');
+//         setTimeout(() => {
+//           link.setAttribute('title', originalTitle || '');
+//         }, 1500);
+//       }).catch(err => {
+//         console.error('Failed to copy:', err);
+//       });
+//     });
+//   });
+// };
 
 // Load navbar and set up handlers on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -83,4 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Return to top button
   loadHTMLAsset('returnToTop-placeholder', './assets/return-to-top.html', returnToTop);
+
+  // Copy links
+  // loadHTMLAsset('copy-link-placeholder', './assets/copy-link.html');
 });
+
