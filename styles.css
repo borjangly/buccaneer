@@ -25,6 +25,14 @@ body {
     font-size: 17px;
 }
 
+.divider-text {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin: 2em 0;
+  font-size: 1em;
+}
+
 .copy-link:hover svg,
 .copy-link:focus svg {
     fill: black;
